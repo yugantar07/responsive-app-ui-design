@@ -15,51 +15,72 @@ import {
 import TextInputComponent from '../components/TextInputComponent';
 import colors from '../colors/colors';
 import ButtonComponent from '../components/ButtonComponent';
+import Toast from 'react-native-toast-message';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [isVisible, setIsVisible] = useState(true);
 
   const staticUsername = 'Admin123';
   const staticPassword = 'Password123';
 
-  const validateForm = () => {
-    let errors = {};
+  // const validateForm = () => {
+  //   let errors = {};
 
-    if (!username) errors.username = 'Username is required';
-    if (!password) errors.password = 'Password is required';
+  //   if (!username) errors.username = 'Username is required';
+  //   if (!password) errors.password = 'Password is required';
 
-    setErrors(errors);
+  //   setErrors(errors);
 
-    return Object.keys(errors).length === 0;
+  //   return Object.keys(errors).length === 0;
+  // };
+
+  const showToast1 = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid credentials',
+      text2: 'Try Again',
+      visibilityTime: 2500,
+      position: 'bottom',
+    });
+  };
+  const showToast2 = () => {
+    Toast.show({
+      type: 'success',
+      text1: 'Welcome!',
+      text2: 'Login Successfully',
+      visibilityTime: 2500,
+      position: 'bottom',
+    });
   };
 
   const handleSubmit = () => {
-    const isValid = validateForm();
+    // const isValid = validateForm();
 
-    if (isValid) {
-      if (username === staticUsername && password === staticPassword) {
-        console.log('Login Successful');
-        navigation.navigate('Home');
-        setUsername('');
-        setPassword('');
-        setErrors({});
-      } else {
-        console.log('Invalid credentials');
-        Alert.alert('Invalid credentials');
-      }
+    // if (isValid) {
+    if (username === staticUsername && password === staticPassword) {
+      console.log('Login Successful');
+      navigation.navigate('Tab');
+      setUsername('');
+      setPassword('');
+      // setErrors({});
+      showToast2();
     } else {
-      console.log('Form validation failed');
+      console.log('Invalid credentials');
+      showToast1();
     }
+    // } else {
+    //   console.log('Form validation failed');
+    // }
   };
 
   return (
     <View style={styles.container}>
       <ImageBackground
         source={{
-          uri: 'https://www.parents.com/thmb/GExGCp2zHxDIKxnCtx4QykPFqAs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1407570793-5f7481ec66794bdb8f67f27f1a9cf6d2.jpg',
+          uri: 'https://www.acquisition-international.com/wp-content/uploads/2021/01/employee-tracking.jpg',
         }}
         style={styles.img}>
         <Text style={styles.title}>Login</Text>
@@ -72,22 +93,24 @@ const Login = ({navigation}) => {
             keyboardType="email-address"
             onChangeText={setUsername}
           />
-          {errors.username && (
+          {/* {errors.username && (
             <Text style={styles.errorText}>{errors.username}</Text>
-          )}
+          )} */}
         </View>
 
-        <TextInputComponent
-          label={'Password'}
-          placeholder={'Enter your password'}
-          secureTextEntry={isVisible}
-          rightIcon={isVisible ? 'eye-off' : 'eye'}
-          onPressRight={() => setIsVisible(!isVisible)}
-          onChangeText={setPassword}
-        />
-        {errors.password && (
-          <Text style={styles.errorText}>{errors.password}</Text>
-        )}
+        <View>
+          <TextInputComponent
+            label={'Password'}
+            placeholder={'Enter your password'}
+            secureTextEntry={isVisible}
+            rightIcon={isVisible ? 'eye-off' : 'eye'}
+            onPressRight={() => setIsVisible(!isVisible)}
+            onChangeText={setPassword}
+          />
+          {/* {errors.password && (
+            <Text style={styles.errorText}>{errors.password}</Text>
+          )} */}
+        </View>
         <TouchableOpacity style={styles.forgotView} activeOpacity={0.7}>
           <Text style={styles.forgotText}>Forgot password?</Text>
         </TouchableOpacity>
@@ -124,6 +147,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: scale(34),
     fontWeight: 'bold',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
   mainStyle: {
     paddingHorizontal: moderateScale(24),
