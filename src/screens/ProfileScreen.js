@@ -1,55 +1,83 @@
-// ProfileScreen.js
-
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 const ProfileScreen = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          style={styles.avatar}
-          source={require('../assets/profile.jpg')}
-        />
-        <Text style={styles.name}>Tek Bahadur Chettri</Text>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Image
+            style={styles.avatar}
+            source={require('../assets/profile.jpg')}
+          />
+          <Text style={styles.name}>Tek Bahadur Chettri</Text>
+        </View>
+        <View style={styles.info}>
+          <View style={styles.stats}>
+            <Text style={styles.statNumber}>5</Text>
+            <Text style={styles.statLabel}>Photos</Text>
+          </View>
+          <View style={styles.stats}>
+            <Text style={styles.statNumber}>10</Text>
+            <Text style={styles.statLabel}>Followers</Text>
+          </View>
+          <View style={styles.stats}>
+            <Text style={styles.statNumber}>10</Text>
+            <Text style={styles.statLabel}>Following</Text>
+          </View>
+        </View>
+        <View style={styles.contact}>
+          <View style={styles.contactItem}>
+            <Icon
+              name="email"
+              type="material"
+              color="#517fa4"
+              size={scale(26)}
+            />
+            <Text style={styles.contactText}>tekchettri@gmail.com</Text>
+          </View>
+          <View style={styles.contactItem}>
+            <Icon
+              name="phone"
+              type="material"
+              color="#517fa4"
+              size={scale(26)}
+            />
+            <Text style={styles.contactText}>+222 202 202</Text>
+          </View>
+          <View style={styles.contactItem}>
+            <Icon
+              name="account-group"
+              type="material"
+              color="#517fa4"
+              size={scale(26)}
+            />
+            <Text style={styles.contactText}>Add to Group</Text>
+          </View>
+          <View style={styles.contactItem}>
+            <Icon
+              name="comment"
+              type="material"
+              color="#517fa4"
+              size={scale(26)}
+            />
+            <Text style={styles.contactText}>Show All Comments</Text>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.signOutButton}>
+          <Text style={styles.buttonText}>Sign Out</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.info}>
-        <View style={styles.stats}>
-          <Text style={styles.statNumber}>5</Text>
-          <Text style={styles.statLabel}>Photos</Text>
-        </View>
-        <View style={styles.stats}>
-          <Text style={styles.statNumber}>225</Text>
-          <Text style={styles.statLabel}>Followers</Text>
-        </View>
-        <View style={styles.stats}>
-          <Text style={styles.statNumber}>228</Text>
-          <Text style={styles.statLabel}>Following</Text>
-        </View>
-      </View>
-      <View style={styles.contact}>
-        <View style={styles.contactItem}>
-          <Icon name="email" type="material" color="#517fa4" />
-          <Text style={styles.contactText}>tekchettri@gmail.com</Text>
-        </View>
-        <View style={styles.contactItem}>
-          <Icon name="phone" type="material" color="#517fa4" />
-          <Text style={styles.contactText}>+222 202 202</Text>
-        </View>
-        <View style={styles.contactItem}>
-          <Icon name="group" type="material" color="#517fa4" />
-          <Text style={styles.contactText}>Add to Group</Text>
-        </View>
-        <View style={styles.contactItem}>
-          <Icon name="comment" type="material" color="#517fa4" />
-          <Text style={styles.contactText}>Show All Comments</Text>
-        </View>
-      </View>
-      <TouchableOpacity style={styles.signOutButton}>
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -60,60 +88,60 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    marginTop: 50,
+    marginTop: verticalScale(50),
     alignItems: 'center',
   },
   avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: moderateScale(100),
+    height: moderateScale(100),
+    borderRadius: moderateScale(50),
   },
   name: {
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
-    marginVertical: 10,
+    marginVertical: verticalScale(10),
   },
   info: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    marginVertical: 20,
+    marginVertical: verticalScale(20),
   },
   stats: {
     alignItems: 'center',
   },
   statNumber: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: 'bold',
   },
   statLabel: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#888',
   },
   contact: {
     width: '100%',
-    paddingHorizontal: 20,
+    paddingHorizontal: moderateScale(20),
   },
   contactItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 10,
+    marginVertical: verticalScale(10),
   },
   contactText: {
-    marginLeft: 10,
-    fontSize: 16,
+    marginLeft: scale(10),
+    fontSize: moderateScale(16),
   },
   signOutButton: {
     backgroundColor: '#00aced',
     width: '80%',
-    marginVertical: 20,
-    paddingVertical: 10,
+    marginVertical: verticalScale(20),
+    paddingVertical: verticalScale(10),
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: moderateScale(5),
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: 'bold',
   },
 });

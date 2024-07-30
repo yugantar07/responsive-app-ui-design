@@ -17,7 +17,7 @@ import {
 const EmployeesScreen = ({navigation, route}) => {
   const employees = route.params.employees;
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <HeaderComponent title={'All Employees'} />
       <View style={styles.content}>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -26,10 +26,13 @@ const EmployeesScreen = ({navigation, route}) => {
               <TouchableOpacity
                 key={item.id}
                 style={styles.card}
-                activeOpacity={0.7}>
+                activeOpacity={0.7}
+                onPress={() =>
+                  navigation.navigate('Details', {employee: item})
+                }>
                 <Image source={item.img} style={styles.image} />
                 <Text style={styles.cardText}>Name : {item.employeeName}</Text>
-                <Text style={styles.cardText}>ID : {item.id}</Text>
+                <Text style={styles.cardText}>{item.designation}</Text>
               </TouchableOpacity>
             );
           })}
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: scale(16),
+    fontWeight: '500',
   },
   image: {
     height: moderateVerticalScale(100),
@@ -67,5 +71,6 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(10),
     marginHorizontal: moderateScale(10),
     paddingVertical: moderateVerticalScale(10),
+    gap: moderateScale(10),
   },
 });

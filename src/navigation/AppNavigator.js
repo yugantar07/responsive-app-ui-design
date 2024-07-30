@@ -10,6 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from '../colors/colors';
 import EmployeesScreen from '../screens/EmployeesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import EmployeeDetailsScreen from '../screens/EmployeeDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,11 +57,14 @@ const BottomTabNavigator = () => {
 const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
+      {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
+      {/* <Stack.Screen name="Details" component={EmployeeDetailsScreen} /> */}
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Tab" component={BottomTabNavigator} />
       <Stack.Screen name="Employees" component={EmployeesScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Details" component={EmployeeDetailsScreen} />
     </Stack.Navigator>
   );
 };

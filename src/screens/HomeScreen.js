@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Image,
   StyleSheet,
@@ -6,7 +7,6 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
 import {
   moderateScale,
@@ -14,8 +14,6 @@ import {
   scale,
 } from 'react-native-size-matters';
 import colors from '../colors/colors';
-
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const HomeScreen = ({navigation}) => {
   const employees = [
@@ -63,20 +61,20 @@ const HomeScreen = ({navigation}) => {
     },
     {
       id: 8,
+      img: require('../assets/user.png'),
       employeeName: 'Kushal',
-      img: require('../assets/user.png'),
-      designation: 'Senior App Developer',
-    },
-    {
-      id: 9,
-      employeeName: 'Jeevan',
-      img: require('../assets/user.png'),
       designation: 'Junior App Developer',
     },
     {
-      id: 10,
-      employeeName: 'Kamal',
+      id: 9,
       img: require('../assets/user.png'),
+      employeeName: 'Jeevan',
+      designation: 'Intern',
+    },
+    {
+      id: 10,
+      img: require('../assets/user.png'),
+      employeeName: 'Kamal',
       designation: 'Intern',
     },
   ];
@@ -91,7 +89,7 @@ const HomeScreen = ({navigation}) => {
       />
       <View style={styles.content}>
         <Text style={styles.titleText}>Employees</Text>
-        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+        <View style={styles.employeeContainer}>
           {displayedEmployees.map(item => {
             return (
               <TouchableOpacity
@@ -99,7 +97,7 @@ const HomeScreen = ({navigation}) => {
                 style={styles.card}
                 activeOpacity={0.7}>
                 <Image source={item.img} style={styles.image} />
-                <Text style={styles.cardText}>Name : {item.employeeName}</Text>
+                <Text style={styles.cardText}>Name: {item.employeeName}</Text>
                 <Text style={styles.cardText}>{item.designation}</Text>
               </TouchableOpacity>
             );
@@ -119,22 +117,24 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export default HomeScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'white',
+    backgroundColor: '#f0f0f0',
   },
   content: {
     marginHorizontal: moderateScale(14),
-    // backgroundColor: 'red',
   },
   titleText: {
     textAlign: 'center',
     marginTop: moderateVerticalScale(16),
     fontSize: scale(18),
     fontWeight: '600',
+  },
+  employeeContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   cardText: {
     fontSize: scale(16),
@@ -150,13 +150,13 @@ const styles = StyleSheet.create({
     marginVertical: moderateVerticalScale(10),
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 3},
+    shadowOffset: {width: 0, height: moderateScale(3)},
     shadowOpacity: 0.4,
     shadowRadius: moderateScale(4),
     borderRadius: moderateScale(10),
     marginHorizontal: moderateScale(10),
     paddingVertical: moderateVerticalScale(10),
-    gap: 10,
+    gap: moderateScale(10),
   },
   buttonContainer: {
     margin: moderateScale(20),
@@ -165,10 +165,10 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.themeColor,
     paddingVertical: moderateVerticalScale(10),
-    paddingHorizontal: moderateVerticalScale(20),
+    paddingHorizontal: moderateScale(20),
     borderRadius: moderateScale(5),
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: {width: 0, height: moderateScale(2)},
     shadowOpacity: 0.2,
     shadowRadius: moderateScale(4),
   },
@@ -178,3 +178,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default HomeScreen;
