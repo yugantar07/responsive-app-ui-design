@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
+import colors from '../colors/colors';
 
 const About = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <HeaderComponent title={'About Us'} />
+      <HeaderComponent title={'About Us'} bgColor={colors.themeColor} />
       <Text style={styles.paragraph}>
         Welcome to our application! We are dedicated to bringing you the best
         user experience possible. Our app is designed to provide you with

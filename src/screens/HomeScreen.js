@@ -85,6 +85,7 @@ const HomeScreen = ({navigation}) => {
       <HeaderComponent
         title={'Home'}
         icon
+        bgColor={colors.themeColor}
         onPressProfile={() => navigation.navigate('Profile')}
       />
       <View style={styles.content}>
@@ -92,14 +93,11 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.employeeContainer}>
           {displayedEmployees.map(item => {
             return (
-              <TouchableOpacity
-                key={item.id}
-                style={styles.card}
-                activeOpacity={0.7}>
+              <View key={item.id} style={styles.card} activeOpacity={0.7}>
                 <Image source={item.img} style={styles.image} />
                 <Text style={styles.cardText}>Name: {item.employeeName}</Text>
                 <Text style={styles.cardText}>{item.designation}</Text>
-              </TouchableOpacity>
+              </View>
             );
           })}
         </View>

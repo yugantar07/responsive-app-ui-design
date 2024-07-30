@@ -13,12 +13,19 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
+import colors from '../colors/colors';
 
 const EmployeesScreen = ({navigation, route}) => {
   const employees = route.params.employees;
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <HeaderComponent title={'All Employees'} />
+      <HeaderComponent
+        title={'All Employees'}
+        icon2
+        iconColor={'white'}
+        bgColor={colors.themeColor}
+        onPressBack={() => navigation.goBack()}
+      />
       <View style={styles.content}>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {employees.map(item => {

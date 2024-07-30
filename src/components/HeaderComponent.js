@@ -7,12 +7,31 @@ import {
   scale,
 } from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon2 from 'react-native-vector-icons/MaterialIcons';
 
-const HeaderComponent = ({title, icon, onPressProfile}) => {
+const HeaderComponent = ({
+  title,
+  bgColor,
+  icon,
+  icon2,
+  iconColor,
+  onPressProfile,
+  onPressBack,
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: bgColor}]}>
       <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          {icon2 ? (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={onPressBack}
+              style={{paddingRight: 20}}>
+              <Icon2 name="arrow-back" size={32} color={iconColor} />
+            </TouchableOpacity>
+          ) : null}
+          <Text style={styles.title}>{title}</Text>
+        </View>
         {icon ? (
           <TouchableOpacity activeOpacity={0.7} onPress={onPressProfile}>
             <Icon name="user-circle" size={32} color={'white'} />
@@ -27,7 +46,7 @@ export default HeaderComponent;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.themeColor,
+    // backgroundColor: colors.themeColor,
     height: moderateVerticalScale(50),
     justifyContent: 'center',
   },
